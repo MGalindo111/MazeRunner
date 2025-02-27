@@ -1,12 +1,20 @@
 from tkinter import Tk, BOTH, Canvas
-from graphic import Window,Point,Line
+from graphic import Window,Point,Line, Cell
+from maze import Maze
 def main():
-    print("hello")
-    my_window = Window(800,600)
-    p1 = Point(50,50)
-    p2 = Point(400,400)
-    line_1 = Line(p1,p2)
-    my_window.draw_line(line_1,"black")
-    my_window.wait_for_close()
+    
+    num_rows = 6
+    num_cols = 6
+    margin = 50
+    screen_x = 800
+    screen_y = 600
+    cell_size_x = (screen_x - 2 * margin) / num_cols
+    cell_size_y = (screen_y - 2 * margin) / num_rows
+    win = Window(screen_x, screen_y)
+
+    maze = Maze(margin, margin, num_rows, num_cols, cell_size_x, cell_size_y, win,0)
+    maze.solve()
+    win.wait_for_close()
+   
     
 main()
